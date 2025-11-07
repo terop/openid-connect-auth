@@ -81,3 +81,10 @@
   (if-let [bearer-token (get (:headers request) "bearer")]
     (validate-access-token auth-config bearer-token)
     (and @id-token-valid (user-authorized? auth-config request))))
+
+(defn make-logout-url
+  "Create log out URL to the authentication server."
+  [redirect-uri auth-config]
+  (str (:base-url auth-config)
+       "/protocol/openid-connect/logout?post_logout_redirect_uri=" redirect-uri
+       "&client_id=" (:client-id auth-config)))
