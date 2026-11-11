@@ -10,11 +10,12 @@
   :access-token-audience     String or collection of expected access token
                              audiences. Default [\"account\"] (Keycloak).
   :id-token-clock-skew       Allowed clock skew for ID tokens in seconds.
-                             Default 86400 (1 day). Large enough that a
-                             browser-stored ID token can be re-validated (e.g.
-                             posted to /store-id-token after a backend restart)
-                             after its real exp. Set a smaller value if you do
-                             not rely on that restore path.
+                             Default 300 (5 minutes). ID tokens are accepted
+                             this long after their exp, so a leaked token stays
+                             usable for that long. Clients that re-validate a
+                             stored ID token (e.g. after a backend restart)
+                             should keep it fresh from refresh responses rather
+                             than raise this value.
   :jwks-url                  Overrides the JWKS location.
   :logout-url                Overrides the end-session endpoint.
 
@@ -40,10 +41,9 @@
 
 (def id-token-valid (atom false))
 
-;; Defaults reproduce the original Keycloak behaviour so existing configs keep working
+;; Reproduces the original Keycloak behaviour so existing configs keep working
 (def ^:private default-access-token-audience ["account"])
-;; Default so stored ID tokens can be re-validated past their real exp
-(def ^:private default-id-token-clock-skew 86400)
+(def ^:private default-id-token-clock-skew 300)
 
 (def ^:private ^HttpClient http-client
   (-> (HttpClient/newBuilder)
