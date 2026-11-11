@@ -22,7 +22,7 @@
 
 (defn- pom-template [version]
   [[:description "OpenID Connect authentication utility library"]
-   [:url "https://git.sr.ht/~terop/openid-connect-auth"]
+   [:url "https://github.com/terop/openid-connect-auth"]
    [:licenses
     [:license
      [:name "Eclipse Public License"]
@@ -31,9 +31,9 @@
     [:developer
      [:name "Tero Paloheimo"]]]
    [:scm
-    [:url "https://git.sr.ht/~terop/openid-connect-auth"]
-    [:connection "scm:git:https://git.sr.ht/~terop/openid-connect-auth"]
-    [:developerConnection "scm:git:ssh:git@git.sr.ht:~terop/openid-connect-auth"]
+    [:url "https://github.com/terop/openid-connect-auth"]
+    [:connection "scm:git:https://github.com/terop/openid-connect-auth"]
+    [:developerConnection "scm:git:https://github.com/terop/openid-connect-auth"]
     [:tag (str "v" version)]]])
 
 (defn- jar-opts [opts]
