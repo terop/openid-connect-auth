@@ -187,7 +187,7 @@
     (testing "a token expired 10 minutes ago is rejected with a 60 second skew"
       (is (nil? (oidc/check-id-token (assoc auth-config :id-token-clock-skew 60)
                                      (resolver-for jwk) expired-token))))
-    (testing "the default 30 day skew accepts it (Keycloak compatibility)"
+    (testing "the default skew accepts a token expired 10 minutes ago"
       (is (true? (oidc/check-id-token auth-config (resolver-for jwk) expired-token))))))
 
 ;; End to end against a local IdP (discovery, JWKS, logout)
