@@ -1,7 +1,7 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.12.6"}
         com.taoensso/timbre {:mvn/version "6.8.0"}
-        org.bitbucket.b_c/jose4j {:mvn/version "0.9.6"}}
+        org.bitbucket.b_c/jose4j {:mvn/version "0.9.7"}}
  :aliases
  {:build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.14"}}
           :ns-default build}
